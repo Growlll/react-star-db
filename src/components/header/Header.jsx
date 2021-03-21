@@ -38,19 +38,19 @@ const Header = () => {
   return (
     <HeaderStyle className='header d-flex'>
       <TitleStyle>
-        <a href="">Star DB</a>
+        <a href="/">Star DB</a>
       </TitleStyle>
 
       <NavStyle>
         <ListStyle className='d-flex'>
           <ItemStyle>
-            <a href={'#'}>People</a>
+            <a href='/'>People</a>
           </ItemStyle>
           <ItemStyle>
-            <a href={'#'}>Planets</a>
+            <a href='/'>Planets</a>
           </ItemStyle>
           <ItemStyle>
-            <a href={'#'}>Starships</a>
+            <a href='/'>Starships</a>
           </ItemStyle>
         </ListStyle>
       </NavStyle>

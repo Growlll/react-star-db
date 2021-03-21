@@ -8,8 +8,10 @@ import styled from "styled-components";
 const InfoStyle = styled.div`
   width: 500px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   
-  & > .col-md-6 {
+  & > .col-md-12 {
     padding: 0;
   }
 `
@@ -21,11 +23,11 @@ const App = () => {
       <RandomPlanet />
 
       <InfoStyle className='row mb-2'>
-        <div className='col-md-6'>
+        <div className='col-md-12'>
           <ItemList />
         </div>
 
-        <div className='col-md-6'>
+        <div className='col-md-12'>
           <PersonDetails />
         </div>
       </InfoStyle>
