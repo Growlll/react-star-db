@@ -42,7 +42,6 @@ class RandomPlanet extends React.Component {
     loading: true,
     error: false
   }
-
   swapiService = new SwapiService()
 
   constructor(props) {
@@ -64,7 +63,7 @@ class RandomPlanet extends React.Component {
     })
   }
 
-  updatePlanet() {
+  updatePlanet = () => {
     const id = Math.floor(Math.random() * 21) + 2
     this.swapiService.getPlanet(id)
       .then(this.onPlanetLoaded)
