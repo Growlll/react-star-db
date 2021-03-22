@@ -4,7 +4,6 @@ import styled from "styled-components";
 const PersonDetailsStyle = styled.div`
   display: flex;
   flex-direction: row;
-  width: 500px;
   margin: 0 auto 20px;
   background: #303030;
   border-radius: 5px;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderStyle = styled.div`
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;

@@ -7,7 +7,7 @@ import ErrorIndicator from "../error-indicator/ErrorIndicator";
 const RandomPlanetStyle = styled.div`
   display: flex;
   justify-content: center;
-  width: 500px;
+  width: 100%;
   margin: 0 auto 20px;
   background: #303030;
   border-radius: 5px;

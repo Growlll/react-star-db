@@ -23,7 +23,7 @@ class ItemList extends React.Component {
   }
 
   renderItem = (list) => {
-    return list.map(({ id, name }) => {
+    return list.map(({id, name}) => {
       return (
         <li className='list-group-item'
             key={id}
@@ -35,8 +35,8 @@ class ItemList extends React.Component {
   }
 
   render() {
-    if(!this.state.peopleList) {
-      return <Spinner />
+    if (!this.state.peopleList) {
+      return <Spinner/>
     }
 
     const people = this.renderItem(this.state.peopleList)

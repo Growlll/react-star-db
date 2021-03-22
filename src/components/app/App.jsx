@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Header from "../header/Header";
 import RandomPlanet from "../random-planet/RandomPlanet";
 import ItemList from "../item-list/ItemList";
 import PersonDetails from "../person-details/PersonDetails";
 import styled from "styled-components";
 
+const ContainerStyle = styled.div`
+  width: 1000px;
+  margin: 0 auto;
+`
 const InfoStyle = styled.div`
-  width: 500px;
+  width: 1000px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
 
   & > .col-md-12 {
     padding: 0;
+  }
+`
+const ButtonsStyle = styled.div`
+  margin-bottom: 20px;
+
+  & > button {
+    border: transparent;
+    background-color: #23731f;
+    border-radius: 3px;
+    padding: 5px 20px;
+    font-size: 20px;
+    color: #fff;
   }
 `
 
@@ -38,22 +53,24 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
+      <ContainerStyle>
         <Header/>
         {this.state && <RandomPlanet/>}
 
-        <button onClick={this.toggleRandomPlanet}>Change planet</button>
+        <ButtonsStyle>
+          <button onClick={this.toggleRandomPlanet}>Change planet</button>
+        </ButtonsStyle>
 
-        <InfoStyle className='row mb-2'>
-          <div className='col-md-12'>
+        <InfoStyle className='row mb-12'>
+          <div className='col-md-6 pl-0'>
             <ItemList onItemSelected={this.onPersonSelected}/>
           </div>
 
-          <div className='col-md-12'>
+          <div className='col-md-6 pr-0'>
             <PersonDetails personId={this.state.selectedPerson}/>
           </div>
         </InfoStyle>
-      </div>
+      </ContainerStyle>
     )
   }
 }
