@@ -23,7 +23,7 @@ const ButtonsStyle = styled.div`
 
   & > button {
     border: transparent;
-    background-color: #23731f;
+    background-color: #007053;
     border-radius: 3px;
     padding: 5px 20px;
     font-size: 20px;

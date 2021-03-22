@@ -5,6 +5,10 @@ import Spinner from "../spinner/spinner";
 
 const ListStyle = styled.ul`
   margin-bottom: 20px;
+  
+  & li {
+    cursor: pointer;
+  } 
 `
 
 class ItemList extends React.Component {
