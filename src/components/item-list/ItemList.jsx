@@ -5,10 +5,14 @@ import Spinner from "../spinner/spinner";
 
 const ListStyle = styled.ul`
   margin-bottom: 20px;
-  
+
   & li {
     cursor: pointer;
-  } 
+  }
+
+  & li:hover {
+    background-color: #919090;
+  }
 `
 
 class ItemList extends React.Component {

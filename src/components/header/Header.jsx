@@ -12,6 +12,10 @@ const TitleStyle = styled.h3`
   & a {
     color: #fff;
   }
+  & a:hover {
+    text-decoration: none;
+    color: #00bc8c;
+  }
 `
 const NavStyle = styled.nav`
   display: flex;
@@ -28,6 +32,10 @@ const ItemStyle = styled.li`
   list-style-type: none;
   margin-right: 1.5rem;
   font-size: 1.2rem;
+  
+  & a {
+    transition: all .2s linear;
+  }
   
   & a:hover {
     text-decoration: none;

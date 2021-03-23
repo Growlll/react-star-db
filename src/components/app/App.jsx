@@ -28,6 +28,11 @@ const ButtonsStyle = styled.div`
     padding: 5px 20px;
     font-size: 20px;
     color: #fff;
+    transition: all .2s linear;
+  }
+  
+  & button:hover {
+    background-color: #00bc8c;
   }
 `
 
