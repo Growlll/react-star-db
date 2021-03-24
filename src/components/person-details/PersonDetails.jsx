@@ -77,6 +77,10 @@ class PersonDetails extends React.Component {
       })
   }
 
+  addError = () => {
+    this.foo.bar = 0
+  }
+
   render() {
     if(!this.state.person) {
       return <>Select a person from list</>
@@ -109,6 +113,8 @@ class PersonDetails extends React.Component {
               <TermStyle className='term'>Eye color: </TermStyle>
               <span>{ eyeColor }</span></li>
           </ListStyle>
+
+          <button onClick={this.addError}>Create Error</button>
         </CardBodyStyle>
       </PersonDetailsStyle>
     )

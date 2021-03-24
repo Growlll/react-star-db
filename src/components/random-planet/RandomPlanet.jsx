@@ -44,11 +44,6 @@ class RandomPlanet extends React.Component {
   }
   swapiService = new SwapiService()
 
-  constructor(props) {
-    super(props);
-    this.updatePlanet()
-  }
-
   onPlanetLoaded = (planet) => {
     this.setState({
       planet: planet,
@@ -61,6 +56,15 @@ class RandomPlanet extends React.Component {
       error: true,
       loading: false
     })
+  }
+
+  componentDidMount() {
+    this.updatePlanet()
+    this.interval = setInterval(this.updatePlanet, 5000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   updatePlanet = () => {

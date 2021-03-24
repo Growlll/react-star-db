@@ -9,6 +9,10 @@ const ListStyle = styled.ul`
   & li {
     cursor: pointer;
   }
+  
+  & li.active {
+    background-color: darkgray;
+  }
 
   & li:hover {
     background-color: #919090;
@@ -33,7 +37,7 @@ class ItemList extends React.Component {
   renderItem = (list) => {
     return list.map(({id, name}) => {
       return (
-        <li className='list-group-item'
+        <li className={`list-group-item ${this.props.id === id ? 'active' : ''}`}
             key={id}
             onClick={() => this.props.onItemSelected(id)}>
           {name}
