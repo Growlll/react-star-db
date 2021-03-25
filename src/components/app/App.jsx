@@ -48,29 +48,32 @@ class App extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    this.setState({ hasError: true })
+    this.setState({hasError: true})
   }
 
   render() {
     if (this.state.hasError) {
-      return <ErrorIndicator />
+      return <ErrorIndicator/>
     }
 
     return (
       <ContainerStyle>
         <Header/>
-        {this.state.showRandomPlanet && <RandomPlanet />}
+        {this.state.showRandomPlanet && <RandomPlanet/>}
 
         <ButtonsStyle>
           <button className='btn-change' onClick={this.toggleRandomPlanet}>Change planet</button>
-          <ErrorButton />
+          <ErrorButton/>
         </ButtonsStyle>
 
-        <PeoplePage getData={this.swapiService.getAllPeople} />
+        <PeoplePage getData={this.swapiService.getAllPeople}/>
 
         <div className='row mb-12'>
           <div className='col-md-6 pl-0'>
-            <ItemList getData={this.swapiService.getAllPlanets}/>
+            <ItemList getData={this.swapiService.getAllPlanets}
+                      renderItem={({ name }) => (
+                        <span>{name}<button>!!!</button></span>
+                      )}/>
           </div>
 
           <div className='col-md-6 pr-0'>
@@ -80,11 +83,15 @@ class App extends React.Component {
 
         <div className='row mb-12'>
           <div className='col-md-6 pl-0'>
-            <ItemList getData={this.swapiService.getAllStarships}/>
+            <ItemList getData={this.swapiService.getAllStarships}
+                      renderItem={({ name }) => (
+                        <span>{name}<button>111!</button></span>
+                      )}/>
           </div>
 
           <div className='col-md-6 pr-0'>
-            <PersonDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>
+            <PersonDetails getAllItem={this.getAllItem}
+                           personId={this.state.selectedPerson}/>
           </div>
         </div>
 

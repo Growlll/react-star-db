@@ -38,7 +38,10 @@ class PeoplePage extends React.Component {
     return (
       <InfoStyle className='row mb-12'>
         <div className='col-md-6 pl-0'>
-          <ItemList getData={this.props.getData} onItemSelected={this.onPersonSelected}/>
+          <ItemList getData={this.props.getData}
+                    onItemSelected={this.onPersonSelected}
+                    renderItem={({ name, gender, birthYear }) => (
+                      `${name} (${gender} ${birthYear})`)}/>
         </div>
 
         <div className='col-md-6 pr-0'>

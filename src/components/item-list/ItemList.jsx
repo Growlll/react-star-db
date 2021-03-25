@@ -37,12 +37,15 @@ class ItemList extends React.Component {
   }
 
   renderItem = (list) => {
-    return list.map(({id, name}) => {
+    return list.map((item) => {
+      const { id } = item.id
+      const label = this.props.renderItem(item)
+
       return (
         <li className={`list-group-item ${this.props.id === id ? 'active' : ''}`}
             key={id}
             onClick={() => this.props.onItemSelected(id)}>
-          {name}
+          {label}
         </li>
       )
     })
@@ -53,11 +56,11 @@ class ItemList extends React.Component {
       return <Spinner/>
     }
 
-    const people = this.renderItem(this.state.itemList)
+    const items = this.renderItem(this.state.itemList)
 
     return (
       <ListStyle className='list-group'>
-        {people}
+        {items}
       </ListStyle>
     )
   }
