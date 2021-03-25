@@ -20,16 +20,18 @@ const ListStyle = styled.ul`
 `
 
 class ItemList extends React.Component {
-  swapi = new SwapiService()
+
   state = {
-    peopleList: null
+    itemList: null
   }
 
   componentDidMount() {
-    this.swapi.getAllPeople()
-      .then((peopleList) => {
+    const { getData } = this.props
+
+    getData()
+      .then((itemList) => {
         this.setState({
-          peopleList
+          itemList
         })
       })
   }
@@ -47,11 +49,11 @@ class ItemList extends React.Component {
   }
 
   render() {
-    if (!this.state.peopleList) {
+    if (!this.state.itemList) {
       return <Spinner/>
     }
 
-    const people = this.renderItem(this.state.peopleList)
+    const people = this.renderItem(this.state.itemList)
 
     return (
       <ListStyle className='list-group'>

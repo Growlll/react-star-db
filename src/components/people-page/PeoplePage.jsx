@@ -1,8 +1,9 @@
 import React from 'react';
-import ItemList from "../item-list/ItemList";
-import PersonDetails from "../person-details/PersonDetails";
-import styled from "styled-components";
-import ErrorIndicator from "../error-indicator/ErrorIndicator";
+import ItemList from '../item-list/ItemList';
+import PersonDetails from '../person-details/PersonDetails';
+import styled from 'styled-components';
+import ErrorIndicator from '../error-indicator/ErrorIndicator';
+import SwapiService from '../../services/swapi-service';
 
 const InfoStyle = styled.div`
   width: 1000px;
@@ -22,30 +23,28 @@ class PeoplePage extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    this.setState({ hasError: true })
+    this.setState({hasError: true})
   }
 
   onPersonSelected = (id) => {
-    this.setState({
-      selectedPerson: id
-    })
+    this.setState({ selectedPerson: id })
   }
 
   render() {
-    if(this.state.hasError) {
-      return <ErrorIndicator />
+    if (this.state.hasError) {
+      return <ErrorIndicator/>
     }
 
     return (
-        <InfoStyle className='row mb-12'>
-          <div className='col-md-6 pl-0'>
-            <ItemList onItemSelected={this.onPersonSelected}/>
-          </div>
+      <InfoStyle className='row mb-12'>
+        <div className='col-md-6 pl-0'>
+          <ItemList getData={this.props.getData} onItemSelected={this.onPersonSelected}/>
+        </div>
 
-          <div className='col-md-6 pr-0'>
-            <PersonDetails personId={this.state.selectedPerson}/>
-          </div>
-        </InfoStyle>
+        <div className='col-md-6 pr-0'>
+          <PersonDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>
+        </div>
+      </InfoStyle>
     )
   }
 }
