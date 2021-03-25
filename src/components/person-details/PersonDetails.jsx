@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner/spinner";
+import ErrorButton from "../error-button/ErrorButton";
 
 const PersonDetailsStyle = styled.div`
   display: flex;
@@ -77,10 +78,6 @@ class PersonDetails extends React.Component {
       })
   }
 
-  addError = () => {
-    this.foo.bar = 0
-  }
-
   render() {
     if(!this.state.person) {
       return <>Select a person from list</>
@@ -114,7 +111,7 @@ class PersonDetails extends React.Component {
               <span>{ eyeColor }</span></li>
           </ListStyle>
 
-          <button onClick={this.addError}>Create Error</button>
+          <ErrorButton />
         </CardBodyStyle>
       </PersonDetailsStyle>
     )

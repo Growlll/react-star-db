@@ -32,7 +32,7 @@ class PeoplePage extends React.Component {
   }
 
   render() {
-    if(this.state.error) {
+    if(this.state.hasError) {
       return <ErrorIndicator />
     }
 
