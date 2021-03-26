@@ -13,6 +13,20 @@ const InfoStyle = styled.div`
   }
 `
 
+const Row = ({ left, right} ) => {
+  return (
+    <InfoStyle className='row mb2'>
+      <div className='col-lg-6'>
+        {left}
+      </div>
+
+      <div className='col-lg-6'>
+        {right}
+      </div>
+    </InfoStyle>
+  )
+}
+
 class PeoplePage extends React.Component {
 
   state = {
@@ -25,7 +39,7 @@ class PeoplePage extends React.Component {
   }
 
   onPersonSelected = (id) => {
-    this.setState({ selectedPerson: id })
+    this.setState({selectedPerson: id})
   }
 
   render() {
@@ -33,22 +47,25 @@ class PeoplePage extends React.Component {
       return <ErrorIndicator/>
     }
 
-    return (
-      <InfoStyle className='row mb2'>
-        <div className='col-lg-6'>
-          <ItemList id={this.state.selectedPerson}
-                    getData={this.props.getData}
-                    onItemSelected={this.onPersonSelected}
-                    renderItem={({ name, gender, birthYear }) => (
-                      `${name} (${gender} ${birthYear})`)}/>
-        </div>
+    const itemList = (
+      <ItemList id={this.state.selectedPerson}
+                getData={this.props.getData}
+                onItemSelected={this.onPersonSelected}
+                renderItem={({name, gender, birthYear}) => (
+                  `${name} (${gender} ${birthYear})`)}/>
+    )
 
-        <div className='col-lg-6'>
-          <PersonDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>
-        </div>
-      </InfoStyle>
+    const itemInfo = (
+      <PersonDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>
+    )
+
+    return (
+      <div>
+        <Row left={itemList} right={itemInfo}/>
+      </div>
     )
   }
 }
+
 
 export default PeoplePage;
