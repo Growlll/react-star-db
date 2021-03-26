@@ -3,10 +3,8 @@ import ItemList from '../item-list/ItemList';
 import PersonDetails from '../person-details/PersonDetails';
 import styled from 'styled-components';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
-import SwapiService from '../../services/swapi-service';
 
 const InfoStyle = styled.div`
-  width: 1000px;
   margin: 0 auto;
   display: flex;
 
@@ -36,15 +34,16 @@ class PeoplePage extends React.Component {
     }
 
     return (
-      <InfoStyle className='row mb-12'>
-        <div className='col-md-6 pl-0'>
-          <ItemList getData={this.props.getData}
+      <InfoStyle className='row mb2'>
+        <div className='col-lg-6'>
+          <ItemList id={this.state.selectedPerson}
+                    getData={this.props.getData}
                     onItemSelected={this.onPersonSelected}
                     renderItem={({ name, gender, birthYear }) => (
                       `${name} (${gender} ${birthYear})`)}/>
         </div>
 
-        <div className='col-md-6 pr-0'>
+        <div className='col-lg-6'>
           <PersonDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>
         </div>
       </InfoStyle>

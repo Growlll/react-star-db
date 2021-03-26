@@ -6,7 +6,8 @@ const HeaderStyle = styled.div`
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 0;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 `
 const TitleStyle = styled.h3`
   & a {
@@ -44,7 +45,7 @@ const ItemStyle = styled.li`
 
 const Header = () => {
   return (
-    <HeaderStyle className='header d-flex'>
+    <HeaderStyle className='header d-flex col-12'>
       <TitleStyle>
         <a href="/">Star DB</a>
       </TitleStyle>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import SwapiService from '../../services/swapi-service'
 import Spinner from "../spinner/spinner";
 
 const ListStyle = styled.ul`
@@ -38,7 +37,7 @@ class ItemList extends React.Component {
 
   renderItem = (list) => {
     return list.map((item) => {
-      const { id } = item.id
+      const { id } = item
       const label = this.props.renderItem(item)
 
       return (
