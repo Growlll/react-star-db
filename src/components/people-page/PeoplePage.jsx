@@ -13,7 +13,25 @@ const InfoStyle = styled.div`
   }
 `
 
-const Row = ({ left, right} ) => {
+class ErrorBoundary extends React.Component {
+  state = {
+    hasError: false
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({hasError: true})
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <ErrorIndicator />
+    }
+
+    return this.props.children
+  }
+}
+
+const Row = ({left, right}) => {
   return (
     <InfoStyle className='row mb2'>
       <div className='col-lg-6'>
@@ -30,12 +48,7 @@ const Row = ({ left, right} ) => {
 class PeoplePage extends React.Component {
 
   state = {
-    selectedPerson: 1,
-    hasError: false
-  }
-
-  componentDidCatch(error, errorInfo) {
-    this.setState({hasError: true})
+    selectedPerson: 1
   }
 
   onPersonSelected = (id) => {
@@ -43,9 +56,6 @@ class PeoplePage extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return <ErrorIndicator/>
-    }
 
     const itemList = (
       <ItemList id={this.state.selectedPerson}
@@ -60,12 +70,11 @@ class PeoplePage extends React.Component {
     )
 
     return (
-      <div>
+      <ErrorBoundary>
         <Row left={itemList} right={itemInfo}/>
-      </div>
+      </ErrorBoundary>
     )
   }
 }
-
 
 export default PeoplePage;
