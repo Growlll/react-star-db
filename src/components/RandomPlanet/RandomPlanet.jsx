@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import SwapiService from "../../services/swapi-service";
-import Spinner from "../spinner/spinner";
-import ErrorIndicator from "../error-indicator/ErrorIndicator";
+import Spinner from "../Spinner/spinner";
+import ErrorIndicator from "../ErrorIndicator/ErrorIndicator";
 
 const RandomPlanetStyle = styled.div`
   display: flex;

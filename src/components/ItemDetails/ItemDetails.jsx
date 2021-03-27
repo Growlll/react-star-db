@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
 import SwapiService from "../../services/swapi-service";
-import Spinner from "../spinner/spinner";
-import ErrorButton from "../error-button/ErrorButton";
+import Spinner from "../Spinner/spinner";
+import ErrorButton from "../ErrorButton/ErrorButton";
 
-const PersonDetailsStyle = styled.div`
+const ItemDetailsStyle = styled.div`
   display: flex;
   flex-direction: row;
   margin: 0 auto 20px;
@@ -42,12 +42,12 @@ const TermStyle = styled.span`
   color: #bbbcbc;
 `
 
-class PersonDetails extends React.Component {
-  swapi = new SwapiService()
+class ItemDetails extends React.Component {
 
   state = {
-    person: null,
-    loading: true
+    item: null,
+    loading: true,
+    itemUrl: null
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -63,23 +63,24 @@ class PersonDetails extends React.Component {
   }
 
   updatePerson = () => {
-    const { personId } = this.props
-    if(!personId) {
+    const { id, getData, getImageUrl } = this.props
+    if(!id) {
       return
     }
 
-    this.swapi
-      .getPerson(personId)
-      .then((person) => {
+    getData(id)
+      .then((item) => {
         this.setState({
-          person,
-          loading: false
+          item,
+          loading: false,
+          itemUrl: getImageUrl(item)
         })
       })
   }
 
   render() {
-    if(!this.state.person) {
+    const { item, itemUrl } = this.state
+    if(!item) {
       return <>Select a person from list</>
     }
 
@@ -87,13 +88,13 @@ class PersonDetails extends React.Component {
       return <Spinner />
     }
 
-    const { id, name, gender, birthYear, eyeColor } = this.state.person
+    const { name, gender, birthYear, eyeColor } = item
 
     return (
-      <PersonDetailsStyle className='person-details card'>
+      <ItemDetailsStyle className='person-details card'>
         <ImageBlockStyle>
           <img className='person-image'
-               src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+               src={itemUrl}
                alt=""/>
         </ImageBlockStyle>
 
@@ -113,9 +114,9 @@ class PersonDetails extends React.Component {
 
           <ErrorButton />
         </CardBodyStyle>
-      </PersonDetailsStyle>
+      </ItemDetailsStyle>
     )
   }
 }
 
-export default PersonDetails;
+export default ItemDetails;
