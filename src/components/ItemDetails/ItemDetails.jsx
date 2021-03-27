@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import SwapiService from "../../services/swapi-service";
 import Spinner from "../Spinner/spinner";
 import ErrorButton from "../ErrorButton/ErrorButton";
 
@@ -42,7 +41,19 @@ const TermStyle = styled.span`
   color: #bbbcbc;
 `
 
-class ItemDetails extends React.Component {
+const Record = ({ item, field, label }) => {
+  return (
+    <li className='list-group-item'>
+      <TermStyle className='term'>{label}: </TermStyle>
+      <span>{ item[field] }</span></li>
+  )
+}
+
+export {
+  Record
+}
+
+export default class ItemDetails extends React.Component {
 
   state = {
     item: null,
@@ -101,15 +112,11 @@ class ItemDetails extends React.Component {
         <CardBodyStyle className='card-body'>
           <TitleStyle>{ name }</TitleStyle>
           <ListStyle>
-            <li className='list-group-item'>
-              <TermStyle className='term'>Gender: </TermStyle>
-              <span>{ gender }</span></li>
-            <li className='list-group-item'>
-              <TermStyle className='term'>Birth Year: </TermStyle>
-              <span>{ birthYear }</span></li>
-            <li className='list-group-item'>
-              <TermStyle className='term'>Eye color: </TermStyle>
-              <span>{ eyeColor }</span></li>
+            {
+              React.Children.map(this.props.children, (child) => {
+                return React.cloneElement(child, { item })
+              })
+            }
           </ListStyle>
 
           <ErrorButton />
@@ -119,4 +126,3 @@ class ItemDetails extends React.Component {
   }
 }
 
-export default ItemDetails;
