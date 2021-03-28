@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ListStyle = styled.ul`
   margin-bottom: 20px;
@@ -39,6 +39,5 @@ const ItemList = (props) => {
     </ListStyle>
   )
 }
-
 
 export default ItemList;

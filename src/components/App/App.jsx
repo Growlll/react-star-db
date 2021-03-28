@@ -84,35 +84,6 @@ class App extends React.Component {
             { ({name}) => <span>{name}</span> }
           </StarshipList>
 
-          {/*<PeoplePage getData={this.swapiService.getAllPeople}/>*/}
-
-          {/*<div className='row mb-12'>*/}
-          {/*  <div className='col-lg-6'>*/}
-          {/*    <ItemList getData={this.swapiService.getAllPlanets}*/}
-          {/*              renderItem={({ name }) => (*/}
-          {/*                <span>{name}<button>!!!</button></span>*/}
-          {/*              )}/>*/}
-          {/*  </div>*/}
-
-          {/*  <div className='col-lg-6'>*/}
-          {/*    <ItemDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-
-          {/*<div className='row mb-12'>*/}
-          {/*  <div className='col-lg-6'>*/}
-          {/*    <ItemList getData={this.swapiService.getAllStarships}*/}
-          {/*              renderItem={({ name }) => (*/}
-          {/*                <span>{name}<button>111!</button></span>*/}
-          {/*              )}/>*/}
-          {/*  </div>*/}
-
-          {/*  <div className='col-lg-6'>*/}
-          {/*    <ItemDetails getAllItem={this.getAllItem}*/}
-          {/*                 personId={this.state.selectedPerson}/>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-
         </ContainerStyle>
       </ErrorBoundary>
     )
