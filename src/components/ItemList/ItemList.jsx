@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import SwapiService from '../../services/swapi-service';
-import withData from '../hoc-helpers/withData';
 
 const ListStyle = styled.ul`
   margin-bottom: 20px;
@@ -42,6 +40,5 @@ const ItemList = (props) => {
   )
 }
 
-const {getAllPeople} = new SwapiService()
 
-export default withData(ItemList, getAllPeople)
+export default ItemList;

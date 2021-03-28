@@ -4,10 +4,14 @@ import RandomPlanet from "../RandomPlanet/RandomPlanet";
 import styled from "styled-components";
 import ErrorButton from "../ErrorButton/ErrorButton";
 import ErrorIndicator from "../ErrorIndicator/ErrorIndicator";
-import ItemDetails, {Record} from '../ItemDetails/ItemDetails';
 import SwapiService from '../../services/swapi-service';
-import Row from '../Row/Row';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import {
+  PersonList,
+  PlanetList,
+  StarshipList
+} from '../sw-components'
+
 
 const ContainerStyle = styled.div`
   margin: 0 auto;
@@ -55,35 +59,6 @@ class App extends React.Component {
       return <ErrorIndicator/>
     }
 
-    const {
-      getPerson,
-      getStarship,
-      getPersonImage,
-      getStarshipImage
-    } = this.swapiService
-
-    const personDetails = (
-      <ItemDetails id={6}
-                   getData={getPerson}
-                   getImageUrl={getPersonImage} >
-
-        <Record field='gender' label='Gender'/>
-        <Record field='birthYear' label='Birth Year'/>
-        <Record field='eyeColor' label='Eye color'/>
-      </ItemDetails>
-    )
-    const starshipDetails = (
-      <ItemDetails id={5}
-                   getData={getStarship}
-                   getImageUrl={getStarshipImage} >
-
-        <Record field='name' label='Name'/>
-        <Record field='model' label='Model'/>
-        <Record field='manufacturer' label='Manufacturer'/>
-        <Record field='length' label='Length'/>
-      </ItemDetails>
-    )
-
     return (
       <ErrorBoundary>
         <ContainerStyle className='col-12'>
@@ -97,8 +72,17 @@ class App extends React.Component {
             </ButtonsStyle>
           </div>
 
-          <Row left={personDetails}
-               right={starshipDetails}/>
+          <PersonList>
+            { ({name}) => <span>{name}</span> }
+          </PersonList>
+
+          <PlanetList>
+            { ({name}) => <span>{name}</span> }
+          </PlanetList>
+
+          <StarshipList>
+            { ({name}) => <span>{name}</span> }
+          </StarshipList>
 
           {/*<PeoplePage getData={this.swapiService.getAllPeople}/>*/}
 
