@@ -7,6 +7,7 @@ import ErrorIndicator from "../ErrorIndicator/ErrorIndicator";
 import ItemDetails, {Record} from '../ItemDetails/ItemDetails';
 import SwapiService from '../../services/swapi-service';
 import Row from '../Row/Row';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 const ContainerStyle = styled.div`
   margin: 0 auto;
@@ -84,50 +85,52 @@ class App extends React.Component {
     )
 
     return (
-      <ContainerStyle className='col-12'>
-        <div className='col-12'>
-          <Header/>
-          {this.state.showRandomPlanet && <RandomPlanet/>}
+      <ErrorBoundary>
+        <ContainerStyle className='col-12'>
+          <div className='col-12'>
+            <Header/>
+            {this.state.showRandomPlanet && <RandomPlanet/>}
 
-          <ButtonsStyle>
-            <button className='btn-change' onClick={this.toggleRandomPlanet}>Change planet</button>
-            <ErrorButton/>
-          </ButtonsStyle>
-        </div>
+            <ButtonsStyle>
+              <button className='btn-change' onClick={this.toggleRandomPlanet}>Change planet</button>
+              <ErrorButton/>
+            </ButtonsStyle>
+          </div>
 
-        <Row left={personDetails}
-             right={starshipDetails}/>
+          <Row left={personDetails}
+               right={starshipDetails}/>
 
-        {/*<PeoplePage getData={this.swapiService.getAllPeople}/>*/}
+          {/*<PeoplePage getData={this.swapiService.getAllPeople}/>*/}
 
-        {/*<div className='row mb-12'>*/}
-        {/*  <div className='col-lg-6'>*/}
-        {/*    <ItemList getData={this.swapiService.getAllPlanets}*/}
-        {/*              renderItem={({ name }) => (*/}
-        {/*                <span>{name}<button>!!!</button></span>*/}
-        {/*              )}/>*/}
-        {/*  </div>*/}
+          {/*<div className='row mb-12'>*/}
+          {/*  <div className='col-lg-6'>*/}
+          {/*    <ItemList getData={this.swapiService.getAllPlanets}*/}
+          {/*              renderItem={({ name }) => (*/}
+          {/*                <span>{name}<button>!!!</button></span>*/}
+          {/*              )}/>*/}
+          {/*  </div>*/}
 
-        {/*  <div className='col-lg-6'>*/}
-        {/*    <ItemDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+          {/*  <div className='col-lg-6'>*/}
+          {/*    <ItemDetails getAllItem={this.getAllItem} personId={this.state.selectedPerson}/>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
 
-        {/*<div className='row mb-12'>*/}
-        {/*  <div className='col-lg-6'>*/}
-        {/*    <ItemList getData={this.swapiService.getAllStarships}*/}
-        {/*              renderItem={({ name }) => (*/}
-        {/*                <span>{name}<button>111!</button></span>*/}
-        {/*              )}/>*/}
-        {/*  </div>*/}
+          {/*<div className='row mb-12'>*/}
+          {/*  <div className='col-lg-6'>*/}
+          {/*    <ItemList getData={this.swapiService.getAllStarships}*/}
+          {/*              renderItem={({ name }) => (*/}
+          {/*                <span>{name}<button>111!</button></span>*/}
+          {/*              )}/>*/}
+          {/*  </div>*/}
 
-        {/*  <div className='col-lg-6'>*/}
-        {/*    <ItemDetails getAllItem={this.getAllItem}*/}
-        {/*                 personId={this.state.selectedPerson}/>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+          {/*  <div className='col-lg-6'>*/}
+          {/*    <ItemDetails getAllItem={this.getAllItem}*/}
+          {/*                 personId={this.state.selectedPerson}/>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
 
-      </ContainerStyle>
+        </ContainerStyle>
+      </ErrorBoundary>
     )
   }
 }

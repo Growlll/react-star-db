@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from "styled-components";
 import Spinner from "../Spinner/spinner";
 import ErrorButton from "../ErrorButton/ErrorButton";
@@ -53,7 +53,7 @@ export {
   Record
 }
 
-export default class ItemDetails extends React.Component {
+export default class ItemDetails extends Component {
 
   state = {
     item: null,
@@ -99,7 +99,7 @@ export default class ItemDetails extends React.Component {
       return <Spinner />
     }
 
-    const { name, gender, birthYear, eyeColor } = item
+    const { name } = item
 
     return (
       <ItemDetailsStyle className='person-details card'>
