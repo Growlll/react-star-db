@@ -1,6 +1,6 @@
-import {withData} from '../hoc-helpers/withData';
 import SwapiService from '../../services/swapi-service';
 import ItemDetails from '../ItemDetails/ItemDetails';
+import styled from 'styled-components';
 
 const swapiService = new SwapiService()
 
@@ -12,6 +12,18 @@ const {
   getPlanetImage,
   getStarshipImage
 } = swapiService
+
+const TermStyle = styled.span`
+  color: #bbbcbc;
+`
+
+const Record = ({ item, field, label }) => {
+  return (
+    <li className='list-group-item'>
+      <TermStyle className='term'>{label}: </TermStyle>
+      <span>{ item[field] }</span></li>
+  )
+}
 
 const PersonDetails = ({itemId}) => {
   return (

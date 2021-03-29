@@ -79,9 +79,9 @@ class App extends React.Component {
             { ({name}) => <span>{name}</span> }
           </PersonList>
 
-          <PersonDetails>
-
-          </PersonDetails>
+          <PersonDetails itemId={2} />
+          <PlanetDetails itemId={5} />
+          <StarshipDetails itemId={5} />
 
           <PlanetList>
             { ({name}) => <span>{name}</span> }

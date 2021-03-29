@@ -37,21 +37,7 @@ const ListStyle = styled.ul`
 const CardBodyStyle = styled.div`
   padding-top: 0;
 `
-const TermStyle = styled.span`
-  color: #bbbcbc;
-`
 
-const Record = ({ item, field, label }) => {
-  return (
-    <li className='list-group-item'>
-      <TermStyle className='term'>{label}: </TermStyle>
-      <span>{ item[field] }</span></li>
-  )
-}
-
-export {
-  Record
-}
 
 export default class ItemDetails extends Component {
 
@@ -74,12 +60,12 @@ export default class ItemDetails extends Component {
   }
 
   updatePerson = () => {
-    const { id, getData, getImageUrl } = this.props
-    if(!id) {
+    const { itemId, getData, getImageUrl } = this.props
+    if(!itemId) {
       return
     }
 
-    getData(id)
+    getData(itemId)
       .then((item) => {
         this.setState({
           item,

@@ -6,7 +6,8 @@ const withData = (View, getData) => {
   return class extends Component {
 
     state = {
-      data: null
+      data: null,
+      activeId: null
     }
 
     componentDidMount() {
@@ -18,18 +19,25 @@ const withData = (View, getData) => {
         })
     }
 
+    onItemSelected = (id) => {
+      this.setState({activeId: id})
+    }
+
     render() {
       if (!this.state.data) {
         return <Spinner/>
       }
 
       if (this.state.error) {
-        return <ErrorIndicator />
+        return <ErrorIndicator/>
       }
 
-      return <View {...this.props} data={this.state}/>
+      return <View {...this.props}
+                   data={this.state}
+                   onItemSelected={this.onItemSelected}
+                   activeId={this.state.activeId}/>
     }
   }
 }
 
-export { withData }
+export {withData}

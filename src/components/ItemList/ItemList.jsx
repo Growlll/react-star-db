@@ -18,14 +18,14 @@ const ListStyle = styled.ul`
 `
 
 const ItemList = (props) => {
-  const { data, onItemSelected, children: renderLabel } = props
+  const { activeId, data, onItemSelected, children: renderLabel } = props
 
   const items = data.data.map((item) => {
       const { id } = item
       const label = renderLabel(item)
 
       return (
-        <li className={`list-group-item ${props.id === id ? 'active' : ''}`}
+        <li className={`list-group-item ${activeId === id ? 'active' : ''}`}
             key={id}
             onClick={() => onItemSelected(id)}>
           {label}
