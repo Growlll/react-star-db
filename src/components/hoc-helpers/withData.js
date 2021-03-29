@@ -19,7 +19,7 @@ const withData = (View, getData) => {
     }
 
     render() {
-      if (!this.state.itemList) {
+      if (!this.state.data) {
         return <Spinner/>
       }
 

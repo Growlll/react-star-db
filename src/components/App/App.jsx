@@ -9,7 +9,10 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import {
   PersonList,
   PlanetList,
-  StarshipList
+  StarshipList,
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
 } from '../sw-components'
 
 
@@ -75,6 +78,10 @@ class App extends React.Component {
           <PersonList>
             { ({name}) => <span>{name}</span> }
           </PersonList>
+
+          <PersonDetails>
+
+          </PersonDetails>
 
           <PlanetList>
             { ({name}) => <span>{name}</span> }
