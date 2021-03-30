@@ -14,6 +14,7 @@ import {
   PlanetDetails,
   StarshipDetails
 } from '../sw-components'
+import Row from '../Row/Row';
 
 
 const ContainerStyle = styled.div`
@@ -75,21 +76,9 @@ class App extends React.Component {
             </ButtonsStyle>
           </div>
 
-          <PersonList>
-            { ({name}) => <span>{name}</span> }
-          </PersonList>
-
-          <PersonDetails itemId={2} />
-          <PlanetDetails itemId={5} />
-          <StarshipDetails itemId={5} />
-
-          <PlanetList>
-            { ({name}) => <span>{name}</span> }
-          </PlanetList>
-
-          <StarshipList>
-            { ({name}) => <span>{name}</span> }
-          </StarshipList>
+          <Row left={<PersonList />} right={<PersonDetails itemId={2} />}/>
+          <Row left={<PlanetList />} right={<PlanetDetails itemId={5} />}/>
+          <Row left={<StarshipList />} right={<StarshipDetails itemId={5} />}/>
 
         </ContainerStyle>
       </ErrorBoundary>
