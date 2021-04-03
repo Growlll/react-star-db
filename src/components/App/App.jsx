@@ -15,6 +15,7 @@ import {
   StarshipDetails
 } from '../sw-components'
 import Row from '../Row/Row';
+import {SwapiServiceProvider} from '../SwapiServiceContext/SwapiServiceContext';
 
 
 const ContainerStyle = styled.div`
@@ -65,22 +66,24 @@ class App extends React.Component {
 
     return (
       <ErrorBoundary>
-        <ContainerStyle className='col-12'>
-          <div className='col-12'>
-            <Header/>
-            {this.state.showRandomPlanet && <RandomPlanet/>}
+        <SwapiServiceProvider value={this.swapiService}>
+          <ContainerStyle className='col-12'>
+            <div className='col-12'>
+              <Header/>
+              {this.state.showRandomPlanet && <RandomPlanet/>}
 
-            <ButtonsStyle>
-              <button className='btn-change' onClick={this.toggleRandomPlanet}>Change planet</button>
-              <ErrorButton/>
-            </ButtonsStyle>
-          </div>
+              <ButtonsStyle>
+                <button className='btn-change' onClick={this.toggleRandomPlanet}>Change planet</button>
+                <ErrorButton/>
+              </ButtonsStyle>
+            </div>
 
-          <Row left={<PersonList />} right={<PersonDetails itemId={2} />}/>
-          <Row left={<PlanetList />} right={<PlanetDetails itemId={5} />}/>
-          <Row left={<StarshipList />} right={<StarshipDetails itemId={5} />}/>
+            <Row left={<PersonList/>} right={<PersonDetails itemId={2}/>}/>
+            <Row left={<PlanetList/>} right={<PlanetDetails itemId={5}/>}/>
+            <Row left={<StarshipList/>} right={<StarshipDetails itemId={5}/>}/>
 
-        </ContainerStyle>
+          </ContainerStyle>
+        </SwapiServiceProvider>
       </ErrorBoundary>
     )
   }
