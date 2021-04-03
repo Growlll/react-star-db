@@ -1,27 +1,22 @@
 import React from 'react';
-import {SwapiServiceConsumer} from '../SwapiServiceContext/SwapiServiceContext';
 import ItemDetails, {Record} from '../ItemDetails/ItemDetails';
+import WithSwapiService from '../hoc-helpers/WithSwapiService';
 
-const PlanetDetails = ({itemId}) => {
+const PlanetDetails = (props) => {
   return (
-    <SwapiServiceConsumer>
-      {
-        ({ getPlanet, getPlanetImage }) => {
-          return (
-            <ItemDetails
-              itemId={itemId}
-              getData={getPlanet}
-              getImageUrl={getPlanetImage}>
-
-              <Record field='model' label='Model'/>
-              <Record field='length' label='Length'/>
-              <Record field='costInCredits' label='Cost'/>
-            </ItemDetails>
-          )
-        }
-      }
-    </SwapiServiceConsumer>
+    <ItemDetails {...props} >
+      <Record field='model' label='Model'/>
+      <Record field='length' label='Length'/>
+      <Record field='costInCredits' label='Cost'/>
+    </ItemDetails>
   )
 }
 
-export default PlanetDetails;
+const mapMethodsToProps = (swapiService) => {
+  return {
+    getData: swapiService.getPlanet,
+    getImageUrl: swapiService.getPlanetImage
+  }
+}
+
+export default WithSwapiService(PlanetDetails, mapMethodsToProps);

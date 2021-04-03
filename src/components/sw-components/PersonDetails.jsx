@@ -1,26 +1,23 @@
 import React from 'react';
-import {SwapiServiceConsumer} from '../SwapiServiceContext/SwapiServiceContext';
 import ItemDetails, {Record} from '../ItemDetails/ItemDetails';
+import WithSwapiService from '../hoc-helpers/WithSwapiService';
 
-const PersonDetails = ({itemId}) => {
+const PersonDetails = (props) => {
   return (
-    <SwapiServiceConsumer>
-      {
-        ({ getPerson, getPersonImage }) => {
-          return (
-            <ItemDetails
-              itemId={itemId}
-              getData={getPerson}
-              getImageUrl={getPersonImage}>
+    <ItemDetails {...props}>
 
-              <Record field='gender' label='Gender'/>
-              <Record field='eyeColor' label='Eye color'/>
-            </ItemDetails>
-          )
-        }
-      }
-    </SwapiServiceConsumer>
+      <Record field='gender' label='Gender'/>
+      <Record field='eyeColor' label='Eye color'/>
+    </ItemDetails>
   )
+
 }
 
-export default PersonDetails;
+const mapMethodsToProps = (swapiService) => {
+  return {
+    getData: swapiService.getPerson,
+    getImageUrl: swapiService.getPersonImage
+  }
+}
+
+export default WithSwapiService(PersonDetails, mapMethodsToProps);
