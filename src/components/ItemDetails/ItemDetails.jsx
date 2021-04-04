@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from "styled-components";
 import Spinner from "../Spinner/spinner";
 import ErrorButton from "../ErrorButton/ErrorButton";
@@ -14,7 +14,7 @@ const ItemDetailsStyle = styled.div`
 const ImageBlockStyle = styled.div`
   width: 150px;
   margin-right: 1.5rem;
-  
+
   & > img {
     width: 100%;
     border-radius: 5px;
@@ -25,7 +25,7 @@ const TitleStyle = styled.h4`
 `
 const ListStyle = styled.ul`
   padding-left: 1rem;
-  
+
   & > .list-group-item {
     border: none;
     border-top: 1px solid grey;
@@ -49,7 +49,7 @@ const Record = ({item, field, label}) => {
   )
 }
 
-export { Record }
+export {Record}
 
 class ItemDetails extends Component {
 
@@ -60,20 +60,21 @@ class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(this.props.personId !== prevProps.personId) {
+    if (this.props.personId !== prevProps.personId ||
+        this.props.itemId !== prevProps.itemId) {
       this.updatePerson()
-      this.setState({ loading: true })
+      this.setState({loading: true})
     }
   }
 
   componentDidMount() {
     this.updatePerson()
-    this.setState({ loading: false })
+    this.setState({loading: false})
   }
 
   updatePerson = () => {
-    const { itemId, getData, getImageUrl } = this.props
-    if(!itemId) {
+    const {itemId, getData, getImageUrl} = this.props
+    if (!itemId) {
       return
     }
 
@@ -88,16 +89,18 @@ class ItemDetails extends Component {
   }
 
   render() {
-    const { item, itemUrl } = this.state
-    if(!item) {
+    const {item, itemUrl} = this.state
+
+    if (this.state.loading) {
+      return <Spinner/>
+    }
+
+    if (!item) {
       return <>Select a person from list</>
     }
 
-    if(this.state.loading) {
-      return <Spinner />
-    }
 
-    const { name } = item
+    const {name} = item
 
     return (
       <ItemDetailsStyle className='person-details card'>
@@ -108,16 +111,16 @@ class ItemDetails extends Component {
         </ImageBlockStyle>
 
         <CardBodyStyle className='card-body'>
-          <TitleStyle>{ name }</TitleStyle>
+          <TitleStyle>{name}</TitleStyle>
           <ListStyle>
             {
               React.Children.map(this.props.children, (child) => {
-                return React.cloneElement(child, { item })
+                return React.cloneElement(child, {item})
               })
             }
           </ListStyle>
 
-          <ErrorButton />
+          <ErrorButton/>
         </CardBodyStyle>
       </ItemDetailsStyle>
     )

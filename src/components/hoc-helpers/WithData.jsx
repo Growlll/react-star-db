@@ -7,24 +7,38 @@ const withData = (View) => {
 
     state = {
       data: null,
-      activeId: null
+      activeId: null,
+      loading: true,
+      error: false
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+      if (this.props.getData !== prevProps.getData) {
+        this.update()
+      }
     }
 
     componentDidMount() {
+      this.update()
+    }
+
+    update() {
       this.props.getData()
         .then((data) => {
           this.setState({
-            data
+            data,
+            loading: false
+          })
+        })
+        .catch(() => {
+          this.setState((state) => {
+            return { loading: !state.loading}
           })
         })
     }
 
-    onItemSelected = (id) => {
-      this.setState({activeId: id})
-    }
-
     render() {
-      if (!this.state.data) {
+      if (this.state.loading) {
         return <Spinner/>
       }
 
@@ -34,7 +48,7 @@ const withData = (View) => {
 
       return <View {...this.props}
                    data={this.state}
-                   onItemSelected={this.onItemSelected}
+                   onItemSelected={this.props.onItemSelected}
                    activeId={this.state.activeId}/>
     }
   }
